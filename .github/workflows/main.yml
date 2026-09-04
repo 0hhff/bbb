@@ -129,10 +129,10 @@ jobs:
           $cloneDir = "$downloadsDir\Oopus4.8-advanced-deriv-trading-algos-2026"
 
           $b64Token = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("x-access-token:${{ secrets.GTOKEN }}"))
-          git -c http.extraheader="AUTHORIZATION: basic $b64Token" clone $repoUrl $cloneDir
+          git -c http.extraheader="AUTHORIZATION: basic $b64Token" clone --branch fable-thoughts $repoUrl $cloneDir
 
           if (-not (Test-Path "$cloneDir\.git")) {
-              Write-Error "Clone failed — check GTOKEN has repo read access"
+              Write-Error "Clone failed — check GTOKEN has repo read access and that the fable-thoughts branch exists"
               exit 1
           }
 
